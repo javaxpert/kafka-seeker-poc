@@ -1,0 +1,118 @@
+spring:
+  application:
+    name: template-java-app
+  cache:
+    type: hazelcast
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+      maxLifeTime: 285000
+  cloud:
+    stream:
+      function:
+        destination: publishTemplateEvent
+      bindings:
+        publishAircraftEvent-out-0:
+          destination: template.event.topic
+          group: publishTemplateEvent
+  banner:
+    location: classpath:/banner.txt
+  jackson:
+    default-property-inclusion: non_null
+    deserialization:
+      fail-on-unknown-properties: true
+      adjust-dates-to-context-time-zone: false
+    serialization:
+      write-dates-as-timestamps: false
+      write-dates-with-zone-id: false
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          oauth2-client:
+#            client-id:
+#            client-secret:
+#            provider:
+#            authorization-grant-type: client_credentials
+#            scope: openid
+#        provider:
+#          utm-provider:
+#            token-uri:
+#      resourceserver:
+#        jwt:
+#          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    properties:
+      javax:
+        cache:
+          missing_cache_strategy: create
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
+      hibernate:
+        format_sql: false
+        generate_statistics: false
+        cache:
+          # To enable local hazelcast + manager through docker, set these values to true and uncomment the below fields
+          use_second_level_cache: false
+          use_query_cache: false
+          #          hazelcast:
+          #            instance_name: core-aircraft
+          #            use_native_client: false
+          #            native_client_address: localhost:5701
+          #            native_client_group: dev
+          #            client:
+          #              statistics:
+          #                enabled: true
+          region:
+            # To enable local hazelcast + manager through docker, use HazelcastCacheRegionFactory and comment JCache
+            factory_class: org.hibernate.cache.jcache.JCacheRegionFactory
+          #            factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
+logbook:
+  obfuscate:
+    headers:
+      - Authorization
+    parameters:
+      - none
+  exclude:
+    - /actuator/**
+    - /swagger-ui/**
+  format.style: json
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+  packagesToScan: com.sleepythread
+  model-converters:
+    polymorphic-converter:
+      enabled: false
+management:
+  health:
+    binders:
+      enabled: true
+  endpoint:
+    health:
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,bindings,channels,metrics
+template:
+  bindingNames:
+    aircraftEventBinding: publishAircraftEvent-out-0
+  cache:
+    # To use local distributed cache through docker for testing, set this value to true
+    enable-distributed-cache: false
+    cache-cluster-name: dev
+    instance-name-prefix: template-cache
+    network-addresses: localhost:5701
+  api-doc-context-path: /api/template
+logging.level:
+  com.onesky: INFO
+  root: WARN

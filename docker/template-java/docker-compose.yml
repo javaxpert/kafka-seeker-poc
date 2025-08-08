@@ -1,0 +1,65 @@
+version: '3.7'
+services:
+  pgAdmin:
+    image: dpage/pgadmin4:4.28
+    ports: [ '9001:80' ]
+    environment: [ PGADMIN_DEFAULT_EMAIL=alex@sleepythread.com, PGADMIN_DEFAULT_PASSWORD=admin ]
+    restart: on-failure
+    networks:
+      dev-sleepythread:
+        aliases: [ pgadmin.sleepythread.com ]
+  postgresql:
+    image: postgis/postgis:13-master
+    ports: [ '5432:5432' ]
+    environment: [ POSTGRES_PASSWORD=admin, POSTGRES_DB=template_db ]
+    restart: on-failure
+    networks:
+      dev-sleepythread:
+        aliases: [ db.sleepythread.com ]
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    restart: "no"
+    ports:
+      - "9000:9000"
+    environment:
+      KAFKA_BROKERCONNECT: "kafka:9092"
+      JVM_OPTS: "-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
+    depends_on:
+      - kafka
+      - zookeeper
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+  zipkin:
+    image: 'openzipkin/zipkin:latest'
+    ports:
+      - '9411:9411'
+  hazelcast:
+    image: 'hazelcast/hazelcast:4.2.2'
+    ports:
+      - '5701:5701'
+  hazelcast-manager:
+    image: 'hazelcast/management-center:latest'
+    ports:
+      - '8081:8080'
+  kafka:
+    image: 'bitnami/kafka:latest'
+    ports:
+      - '9092:9092'
+      - '9093:9093'
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:9093
+      - KAFKA_INTER_BROKER_LISTENER_NAME=CLIENT
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
+
+networks:
+  dev-sleepythread: { name: dev-sleepythread }

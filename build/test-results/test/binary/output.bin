@@ -1,0 +1,2 @@
+p17:43:44.569 [Test worker] INFO com.sleepythread.template.list.LinkListReverserTest -- A list: a->b,b->c,c->d,d
+p17:43:44.575 [Test worker] INFO com.sleepythread.template.list.LinkListReverserTest -- A list: d->c,c->b,b->a,a
