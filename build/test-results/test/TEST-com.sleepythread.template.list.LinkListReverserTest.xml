@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.sleepythread.template.list.LinkListReverserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-02-01T22:43:44" hostname="AlexsMacBookPro.verizon.net" time="0.024">
-  <properties/>
-  <testcase name="reverseAList()" classname="com.sleepythread.template.list.LinkListReverserTest" time="0.024"/>
-  <system-out><![CDATA[17:43:44.569 [Test worker] INFO com.sleepythread.template.list.LinkListReverserTest -- A list: a->b,b->c,c->d,d
-17:43:44.575 [Test worker] INFO com.sleepythread.template.list.LinkListReverserTest -- A list: d->c,c->b,b->a,a
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

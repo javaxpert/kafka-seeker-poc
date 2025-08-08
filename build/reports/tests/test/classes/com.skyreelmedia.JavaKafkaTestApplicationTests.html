@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - JavaKafkaTestApplicationTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>JavaKafkaTestApplicationTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.skyreelmedia.html">com.skyreelmedia</a> &gt; JavaKafkaTestApplicationTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.926s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+<li>
+<a href="#">Standard error</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">contextLoads()</td>
+<td class="success">0.926s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>11:10:49.282 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.skyreelmedia.JavaKafkaTestApplicationTests]: JavaKafkaTestApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:10:49.385 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.skyreelmedia.JavaKafkaTestApplication for test class com.skyreelmedia.JavaKafkaTestApplicationTests
+ +-+-+-+-+ +-+-+-+-+-+ +-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+-+
+ |J|a|v|a| |K|a|f|k|a| |T|e|s|t| |A|p|p|l|i|c|a|t|i|o|n|
+ +-+-+-+-+ +-+-+-+-+-+ +-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+-+
+ 
+Powered by Spring Boot 4.0.0-M1
+2025-08-08T11:10:49.797-04:00  INFO 3233 --- [kafka-seeker-poc] [    Test worker] c.s.JavaKafkaTestApplicationTests        : Starting JavaKafkaTestApplicationTests using Java 21.0.1 with PID 3233 (started by akirillov in /Users/akirillov/Professional/Projects/kafka-seeker-poc)
+2025-08-08T11:10:49.798-04:00 DEBUG 3233 --- [kafka-seeker-poc] [    Test worker] c.s.JavaKafkaTestApplicationTests        : Running with Spring Boot v4.0.0-M1, Spring v7.0.0-M7
+2025-08-08T11:10:49.799-04:00  INFO 3233 --- [kafka-seeker-poc] [    Test worker] c.s.JavaKafkaTestApplicationTests        : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-08-08T11:10:50.691-04:00  INFO 3233 --- [kafka-seeker-poc] [    Test worker] c.s.JavaKafkaTestApplicationTests        : Started JavaKafkaTestApplicationTests in 1.19 seconds (process running for 2.573)
+2025-08-08T11:10:51.024-04:00  WARN 3233 --- [kafka-seeker-poc] [-consumer-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-test-event-consumer-1, groupId=test-event-consumer] The metadata response from the cluster reported a recoverable issue with correlation id 2 : {test-event-topic=UNKNOWN_TOPIC_OR_PARTITION}
+2025-08-08T11:10:51.738-04:00  INFO 3233 --- [kafka-seeker-poc] [-consumer-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : test-event-consumer: Consumer stopped
+</pre>
+</span>
+</div>
+<div class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/akirillov/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.17.6/17b32fd9f57deef02842f7f05abc4ad8127fe34e/byte-buddy-agent-1.17.6.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.13</a> at Aug 8, 2025, 11:10:51 AM</p>
+</div>
+</div>
+</body>
+</html>

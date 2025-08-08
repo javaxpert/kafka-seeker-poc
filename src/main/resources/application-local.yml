@@ -1,0 +1,5 @@
+spring:
+  docker:
+    compose:
+      enabled: false
+      file: docker/docker-compose.yml

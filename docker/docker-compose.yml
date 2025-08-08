@@ -1,0 +1,43 @@
+networks:
+  kafka-net:
+    driver: bridge
+services:
+  kafka:
+    image: bitnami/kafka
+    hostname: kafka
+    ports:
+      - "9092:9092"
+      - "9094:9094"
+    networks:
+      - kafka-net
+    environment:
+      - KAFKA_ENABLE_KRAFT=yes
+      - KAFKA_CLUSTER_ID=kafka-single-broker-cluster
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092,EXTERNAL://kafka:9094
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@localhost:9093
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
+      - BITNAMI_DEBUG=yes
+      - KAFKA_CFG_NUM_PARTITIONS=3
+
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui
+    ports:
+      - 8080:8080
+    networks:
+      - kafka-net
+    environment:
+      KAFKA_CLUSTERS_0_NAME: kafka-single-broker-cluster
+      DYNAMIC_CONFIG_ENABLED: 'true'
+      LOGGING_LEVEL_ROOT: 'DEBUG'
+    depends_on:
+      - kafka
+    volumes:
+      - ~/Professional/Projects/kafka-seeker-poc/src/main/resources/config.yml:/etc/kafkaui/dynamic_config.yaml

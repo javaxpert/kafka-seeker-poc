@@ -1,0 +1,11 @@
+auth:
+  type: DISABLED
+kafka:
+  clusters:
+  - bootstrapServers: kafka:9094
+    name: kafka-single-broker-cluster
+    properties: {}
+    readOnly: false
+rbac:
+  roles: []
+webclient: {}

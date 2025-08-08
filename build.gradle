@@ -1,10 +1,10 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.2.2'
-    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.springframework.boot' version '4.0.0-M1'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'com.sleepythread'
+group = 'com.skyreelmedia'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -22,17 +22,17 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-integration'
-    implementation 'org.apache.kafka:kafka-streams'
-    implementation 'org.flywaydb:flyway-core'
-    implementation 'org.springframework.integration:spring-integration-kafka'
+    implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.projectlombok:lombok'
+    implementation 'com.fasterxml.jackson.core:jackson-core'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations'
+
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
 
-    runtimeOnly 'org.postgresql:postgresql'
 
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
